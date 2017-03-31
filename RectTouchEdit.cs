@@ -1,16 +1,21 @@
-﻿using UnityEngine;
+/*
+* This is a script for using multi-touch input to manipulate a RectTransform in Unity.
+* Attach this to the RectTransform object for pinch to scale, rotate and move around.
+* maxXposition and maxYposition can be edited from editor.
+*/
+
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class RectTouchEdit : MonoBehaviour {
 
-	public RectTransform loadedRect;
-
 	[HideInInspector] 
 	public int screenWidth,screenHeight,lastTouchCount;
 
-	public float rotateMultiplier,zoomMultiplier,currentTouchDistance;
+	public float rotateMultiplier,zoomMultiplier;
 
 	/// <summary>
 	/// Values for maximum positions the object can move to.
@@ -20,10 +25,12 @@ public class RectTouchEdit : MonoBehaviour {
 	[HideInInspector] 
 	public Vector2 currentPosition,touch1First,touch2First,touch1Current,touch2Current,lastPosition;
 
-	private float distanceTreshold, angleTreshold;
+	private float distanceTreshold, angleTreshold,currentTouchDistance;
 
 	private float pinchAmount,firstDistance,currentDistance,lastDistance,firstAngle,currentAngle,lastAngle;
-
+	
+	private RectTransform loadedRect;
+	
 	//To check if first touch position has been saved.
 	private bool firstTouchChecked;
 
